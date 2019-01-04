@@ -1,16 +1,7 @@
-// Webpack v4
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const TerserPlugin = require("terser-webpack-plugin");
 const devMode = process.env.NODE_ENV;
 const conf = {
-  // entry: { 
-  //   main: './src/index.js', 
-  //   style: './src/scss/main.scss' ,
-  // },
-  // entry: ["./src/index.js", "./src/scss/main.scss"],
   entry: ["./src/index.js"],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -50,8 +41,6 @@ const conf = {
               loader: 'sass-loader',
                 options: {
                   sourceMap: true,
-                  // includePaths: ["src/scss/main.scss"],
-                  // implementation: require("sass")
                 }
             },
           
@@ -59,14 +48,6 @@ const conf = {
         })
       }
 
-      // {
-      //   test: /\.scss$/,
-      //   use: [
-      //     devMode !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
-      //           "css-loader",
-      //           "sass-loader"
-      //   ],
-      // }
     ]
   },
   plugins: [
@@ -74,14 +55,6 @@ const conf = {
       {filename: 'style.css'}
     ),
   ]
-    // plugins: [
-    // new MiniCssExtractPlugin({
-    //     // Options similar to the same options in webpackOptions.output
-    //     // both options are optional
-    //     filename: "[name].css",
-    //     chunkFilename: "[id].css"
-    // })
-    //],
 };
 
 module.exports = (env, options) => {
