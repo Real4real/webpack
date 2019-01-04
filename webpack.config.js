@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const devMode = process.env.NODE_ENV;
 const conf = {
   entry: ["./src/index.js"],
@@ -58,7 +59,19 @@ const conf = {
 };
 
 module.exports = (env, options) => {
-  let production = options.mode === 'production';
-  conf.devtool = production ? false : 'source-map';
-  return conf;
+  // let production = options.mode === 'production';
+  if (options.mode === "production") {
+    conf.devtool = "none";
+    conf.plugins.push(new CleanWebpackPlugin("dist"));
+    return conf;
+  }
+  else {
+    conf.devtool = 'source-map';
+    return conf;
+  }
 }
+// module.exports = (env, options) => {
+//   let production = options.mode === 'production';
+//   conf.devtool = production ? false : 'source-map';
+//   return conf;
+// }
